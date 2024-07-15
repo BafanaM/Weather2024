@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    tools:showIn="@layout/layout_weather_main"
+    app:cardBackgroundColor="@color/darker_grey">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_sunrise"
+                android:id="@+id/iv_sunrise"/>
+
+            <TextView
+                android:id="@+id/tv_sunrise_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                app:layout_constraintEnd_toEndOf="@id/iv_sunrise"
+                app:layout_constraintStart_toStartOf="@id/iv_sunrise"
+                app:layout_constraintTop_toBottomOf="@id/iv_sunrise"
+                tools:text="06:30 AM" />
+
+            <TextView
+                android:id="@+id/tv_real_feel_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_sunrise_time"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pt_regular"
+                android:text="@string/real_feel"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sunrise_time" />
+
+            <TextView
+                android:id="@+id/tv_real_feel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_bold"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tv_real_feel_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_real_feel_label"
+                tools:text="29 °C" />
+
+            <TextView
+                android:id="@+id/tv_cloudiness_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pt_regular"
+                tools:text="@string/cloudiness_label"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_real_feel_text" />
+
+            <TextView
+                android:id="@+id/tv_cloudiness_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_bold"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tv_cloudiness_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_cloudiness_label"
+                tools:text="82%" />
+
+            <TextView
+                android:id="@+id/tv_wind_speed_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pt_regular"
+                android:text="@string/wind_speed_label"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_cloudiness_text" />
+
+            <TextView
+                android:id="@+id/tv_wind_speed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_bold"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_wind_speed_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_wind_speed_label"
+                tools:text="17.7km/h" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:id="@+id/iv_sunset"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:fontFamily="@font/pt_regular"
+                android:src="@drawable/ic_sunset"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_sunset_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_regular"
+                android:textColor="@color/grey"
+                app:layout_constraintEnd_toEndOf="@id/iv_sunset"
+                app:layout_constraintStart_toStartOf="@id/iv_sunset"
+                app:layout_constraintTop_toBottomOf="@id/iv_sunset"
+                tools:text="07:34 PM" />
+            <TextView
+                android:id="@+id/tv_humidity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pt_regular"
+                android:text="@string/humidity_label"
+                android:textColor="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sunset_time" />
+
+            <TextView
+                android:id="@+id/tv_humidity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_bold"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tv_humidity_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_humidity_label"
+                tools:text="28%" />
+
+            <TextView
+                android:id="@+id/tv_pressure_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pt_regular"
+                android:text="@string/atmospheric_pressure"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="@id/tv_humidity_text"
+                app:layout_constraintTop_toBottomOf="@id/tv_humidity_text" />
+
+            <TextView
+                android:id="@+id/tv_pressure_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_bold"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_pressure_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_pressure_label"
+                tools:text="207 hPa" />
+
+            <TextView
+                android:id="@+id/tv_visibility_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pt_regular"
+                android:text="@string/visibility_label"
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="@id/tv_pressure_text"
+                app:layout_constraintTop_toBottomOf="@id/tv_pressure_text" />
+
+            <TextView
+                android:id="@+id/tv_visibility_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pt_bold"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_visibility_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_visibility_label"
+                tools:text="23.5M" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
