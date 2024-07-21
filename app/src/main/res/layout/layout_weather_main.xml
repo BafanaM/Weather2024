@@ -8,29 +8,16 @@
 
     <ImageView
         android:id="@+id/iv_add"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/content_description_save_city"
         android:onClick="onAddButtonClicked"
-        android:src="@drawable/ic_add" />
-
-    <ImageView
-        android:id="@+id/iv_more"
-        android:src="@drawable/ic_more"
-        android:layout_width="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_centerVertical="true"
-        android:onClick="onMoreOptionClicked"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:layout_height="28dp"
-        android:contentDescription="@string/content_description_more" />
+        app:tint="@color/white"
+        android:src="@drawable/ic_search" />
 
     <TextView
         android:id="@+id/tv_temp"
@@ -63,9 +50,9 @@
         android:fontFamily="@font/pt_bold"
         android:textColor="@color/grey"
         android:textSize="24sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/iv_more"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/iv_add"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Pretoria" />

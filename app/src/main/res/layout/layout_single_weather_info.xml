@@ -13,7 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/cl_weather_single">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/iv_sunrise"
                 app:layout_constraintStart_toStartOf="@id/iv_sunrise"
                 app:layout_constraintTop_toBottomOf="@id/iv_sunrise"
@@ -55,7 +56,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/pt_regular"
                 android:text="@string/real_feel"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_sunrise_time" />
 
@@ -66,7 +67,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_bold"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_real_feel_label"
@@ -81,7 +82,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/pt_regular"
                 tools:text="@string/cloudiness_label"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_real_feel_text" />
 
@@ -92,7 +93,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_bold"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_cloudiness_label"
@@ -107,7 +108,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/pt_regular"
                 android:text="@string/wind_speed_label"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_cloudiness_text" />
 
@@ -118,7 +119,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_bold"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -156,7 +157,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_regular"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/iv_sunset"
                 app:layout_constraintStart_toStartOf="@id/iv_sunset"
                 app:layout_constraintTop_toBottomOf="@id/iv_sunset"
@@ -169,7 +170,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/pt_regular"
                 android:text="@string/humidity_label"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_sunset_time" />
 
@@ -180,7 +181,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_bold"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/tv_humidity_label"
@@ -195,7 +196,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/pt_regular"
                 android:text="@string/atmospheric_pressure"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@id/tv_humidity_text"
                 app:layout_constraintTop_toBottomOf="@id/tv_humidity_text" />
 
@@ -206,7 +207,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_bold"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -222,7 +223,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/pt_regular"
                 android:text="@string/visibility_label"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@id/tv_pressure_text"
                 app:layout_constraintTop_toBottomOf="@id/tv_pressure_text" />
 
@@ -233,7 +234,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/pt_bold"
-                android:textColor="@color/grey"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

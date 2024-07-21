@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blue">
+    android:background="@android:color/white">
+
+    <include layout="@layout/layout_toolbar"
+        android:id="@+id/tool_layout"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_error_msg"
+        tools:text="@string/app_name"
+        android:visibility="gone"
+        android:layout_marginHorizontal="8dp"
+        android:textColor="@color/darker_grey"
+        android:fontFamily="@font/pt_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:lottie_rawRes="@raw/loading_indicator"
+        app:tint="@color/darker_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,15 +62,16 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="false"/>
 
-    <include
-        android:id="@+id/inc_info_weather"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        layout="@layout/layout_weather_main"
+        android:id="@+id/rv_forecast"
         android:visibility="gone"
+        tools:listitem="@layout/item_forecast"
+        app:layout_constraintTop_toBottomOf="@+id/tool_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
