@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Weather2024" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="SearchViewText" parent="Widget.AppCompat.SearchView">
+        <item name="android:fontFamily">@font/pt_regular</item>
+        <item name="android:textColor">@color/darker_grey</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

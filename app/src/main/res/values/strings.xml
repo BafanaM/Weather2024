@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="content_description_save_city">Save City</string>
+    <string name="content_description_more">More</string>
+    <string name="degree_in_celsius">°C</string>
+    <string name="real_feel">Real Feel</string>
+    <string name="cloudiness_label">Cloudiness</string>
+    <string name="wind_speed_label">Wind Speed</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="atmospheric_pressure">Pressure</string>
+    <string name="visibility_label">Visibility</string>
+    <string name="forecast_button_label">5 Day Forecast</string>
+    <string name="search_hint_label">Enter Location</string>
+    <string name="no_results_found">No Results Found</string>
+    <string name="added_text">Added</string>
+
+
+</resources>
