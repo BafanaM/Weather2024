@@ -12,7 +12,7 @@ class QueryParameterAddInterceptor: Interceptor {
     private val prefManager = PreferenceManager(context)
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val url = chain.request().url().newBuilder()
+        val url = chain.request().url.newBuilder()
             .addQueryParameter("appid", APP_ID)
             .addQueryParameter("units",prefManager.tempUnit)
             .build()

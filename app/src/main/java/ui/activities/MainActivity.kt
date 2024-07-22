@@ -36,6 +36,8 @@ import utils.Status
 import utils.showToast
 import utils.unixTimestampToTimeString
 import viewmodel.WeatherViewModel
+import viewmodel.WeatherViewModelFactory
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -67,9 +69,13 @@ class MainActivity : AppCompatActivity() {
         Places.initialize(applicationContext, GOOGLE_API_KEY)
 
         model = LocationProvider(this)
-        viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
         weatherRepo = WeatherRepository()
         cityRepo = CityRepository(CityDatabase(this))
+
+        viewModel = ViewModelProvider(
+            this,
+            WeatherViewModelFactory(weatherRepo, model, cityRepo)
+        ).get(WeatherViewModel::class.java)
 
         GpsUtils(this).turnGPSOn(object : GpsUtils.OnGpsListener {
             override fun gpsStatus(isGPSEnable: Boolean) {
@@ -85,11 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpObservers() {
         viewModel.locationLiveData.observe(this) { location ->
-            viewModel.getWeatherByLocation(
-                weatherRepo,
-                location.latitude.toString(),
-                location.longitude.toString()
-            )
+            viewModel.getWeatherByLocation(location.latitude.toString(), location.longitude.toString())
         }
 
         viewModel.weatherByLocation.observe(this) { resource ->
@@ -101,13 +103,11 @@ class MainActivity : AppCompatActivity() {
                         binding.animFailed.visibility = View.GONE
                         binding.animNetwork.visibility = View.GONE
                         setUpUI(it.data)
-                        viewModel.updateSavedCities(cityRepo, CityUpdate(it.data?.id, 1))
+                        viewModel.updateSavedCities(CityUpdate(it.data?.id, 1))
                     }
-
                     Status.ERROR -> {
                         showFailedView(it.message)
                     }
-
                     Status.LOADING -> {
                         binding.progressBar.visibility = View.VISIBLE
                         binding.animFailed.visibility = View.GONE
@@ -166,7 +166,6 @@ class MainActivity : AppCompatActivity() {
                 binding.animFailed.visibility = View.GONE
                 binding.animNetwork.visibility = View.VISIBLE
             }
-
             else -> {
                 binding.animNetwork.visibility = View.GONE
                 binding.animFailed.visibility = View.VISIBLE
@@ -182,12 +181,10 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "Permissions already granted")
                 startLocationUpdate()
             }
-
             shouldShowRequestPermissionRationale() -> {
                 Log.d(TAG, "Showing permission rationale")
                 requestLocationPermission()
             }
-
             else -> {
                 Log.d(TAG, "Requesting location permissions")
                 requestLocationPermission()
@@ -207,7 +204,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startLocationUpdate() {
-        viewModel.getCurrentLocation(model)
+        viewModel.getCurrentLocation()
     }
 
     private fun isPermissionsGranted() =
@@ -276,9 +273,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun onMoreOptionClicked(view: View) {
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
@@ -291,7 +285,7 @@ class MainActivity : AppCompatActivity() {
                     lon = latLng.longitude.toString()
                     city = placeName
                     weatherBinding.tvCityName.text = placeName
-                    viewModel.getWeatherByLocation(weatherRepo, lat!!, lon!!)
+                    viewModel.getWeatherByLocation(lat!!, lon!!)
                 }
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 val status = Autocomplete.getStatusFromIntent(data!!)

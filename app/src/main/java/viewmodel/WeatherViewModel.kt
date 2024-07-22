@@ -19,16 +19,21 @@ import utils.RequestCompleteListener
 import utils.Resource
 import java.io.IOException
 
-class WeatherViewModel : ViewModel() {
+class WeatherViewModel(
+    private val weatherRepository: WeatherRepository,
+    private val locationProvider: LocationProvider,
+    private val cityRepository: CityRepository
+) : ViewModel() {
 
     private val tag = "ViewModel"
     val locationLiveData = MutableLiveData<LocationData>()
     val locationLiveDataFailure = MutableLiveData<String>()
     val weatherByLocation = MutableLiveData<Resource<WeatherResponse>>()
     val weatherForecast = MutableLiveData<Resource<WeatherForecastResponse>>()
+    private val _weatherForecast = MutableLiveData<Resource<WeatherForecastResponse>>()
 
-    fun getCurrentLocation(model: LocationProvider) {
-        model.getCurrentUserLocation(object : RequestCompleteListener<LocationData> {
+    fun getCurrentLocation() {
+        locationProvider.getCurrentUserLocation(object : RequestCompleteListener<LocationData> {
             override fun onRequestCompleted(data: LocationData) {
                 locationLiveData.postValue(data)
             }
@@ -39,19 +44,14 @@ class WeatherViewModel : ViewModel() {
         })
     }
 
-    fun getWeatherByLocation(model: WeatherRepository, lat: String, lon: String) {
-        viewModelScope.launch { safeWeatherByLocationFetch(model, lat, lon) }
+    fun getWeatherByLocation(lat: String, lon: String) {
+        viewModelScope.launch { safeWeatherByLocationFetch(lat, lon) }
     }
 
-
-    private suspend fun safeWeatherByLocationFetch(
-        model: WeatherRepository,
-        lat: String,
-        lon: String
-    ) {
+    private suspend fun safeWeatherByLocationFetch(lat: String, lon: String) {
         weatherByLocation.postValue(Resource.loading(null))
         try {
-            val response = model.getWeatherByLocation(lat, lon)
+            val response = weatherRepository.getWeatherByLocation(lat, lon)
             weatherByLocation.postValue(handleWeatherResponse(response))
         } catch (t: Throwable) {
             handleError(t, weatherByLocation)
@@ -65,19 +65,15 @@ class WeatherViewModel : ViewModel() {
         )
     }
 
-    fun getWeatherForecast(model: WeatherRepository, lat: String, lon: String, exclude: String) {
-        viewModelScope.launch { safeWeatherForecastFetch(model, lat, lon, exclude) }
+    fun getWeatherForecast(lat: String, lon: String, exclude: String) {
+        _weatherForecast.value = Resource.loading(null)
+        viewModelScope.launch { safeWeatherForecastFetch(lat, lon, exclude) }
     }
 
-    private suspend fun safeWeatherForecastFetch(
-        model: WeatherRepository,
-        lat: String,
-        lon: String,
-        exclude: String
-    ) {
+    private suspend fun safeWeatherForecastFetch(lat: String, lon: String, exclude: String) {
         weatherForecast.postValue(Resource.loading(null))
         try {
-            val response = model.getWeatherForecast(lat, lon, exclude)
+            val response = weatherRepository.getWeatherForecast(lat, lon, exclude)
             weatherForecast.postValue(handleWeatherForecast(response))
         } catch (t: Throwable) {
             handleError(t, weatherForecast)
@@ -94,10 +90,10 @@ class WeatherViewModel : ViewModel() {
         }
     }
 
-    fun updateSavedCities(model: CityRepository, obj: CityUpdate) = viewModelScope.launch {
+    fun updateSavedCities(obj: CityUpdate) = viewModelScope.launch {
         try {
             withContext(Dispatchers.IO) {
-                model.updateSavedCities(obj)
+                cityRepository.updateSavedCities(obj)
             }
             info(tag, "Success: Updating City DB")
         } catch (e: Exception) {
@@ -116,10 +112,10 @@ class WeatherViewModel : ViewModel() {
     }
 
     private fun info(tag: String, message: String) {
-        // Implement error logging info
+        // Do nothing for now
     }
 
     private fun error(tag: String, message: String) {
-        // Implement error logging info
+        // Do nothing for now
     }
 }
